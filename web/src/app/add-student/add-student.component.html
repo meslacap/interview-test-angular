@@ -1,0 +1,45 @@
+<h1 id="tableLabel">Add Students</h1>
+
+<table class='table table-striped' aria-labelledby="tableLabel">
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th>Major</th>
+      <th>Average</th>
+      <th>Delete Student</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr [(ngModel)]="student">
+      <td><input [(ngModel)]="student.firstName" /></td>
+      <td><input [(ngModel)]="student.lastName" /></td>
+      <td><input [(ngModel)]="student.email" /></td>
+      <td><input [(ngModel)]="student.major" /></td>
+      <td><input [(ngModel)]="student.average" /></td>
+      <td><button class="button" (click)="addStudent()">Add</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<style>
+  .green {
+    color: green;
+    font-weight: bold;
+  }
+
+  .orange {
+    color: orange;
+    font-weight: bold;
+  }
+
+  .red {
+    color: red;
+    font-weight: bold;
+  }
+
+  .button {
+    float: right;
+  }
+</style>

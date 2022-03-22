@@ -21,6 +21,8 @@ namespace interview_test_angular
 
         public IConfiguration Configuration { get; }
 
+        private readonly string allowOrigins = "localhost";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -29,10 +31,9 @@ namespace interview_test_angular
             // Register the MediatR request handlers
             services.RegisterRequestHandlers();
 
-            services.AddCors(options => options.AddDefaultPolicy(builder =>
+            services.AddCors(options => options.AddPolicy(name: allowOrigins, builder =>
             {
-
-                builder.WithOrigins("http://localhost:4200", "http://localhost:8100", "http://localhost");
+                builder.WithOrigins("http://localhost:4200", "http://localhost:8100", "http://localhost").AllowAnyHeader().AllowAnyMethod();
             }));
 
             services.AddSwaggerGen();
@@ -60,7 +61,7 @@ namespace interview_test_angular
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
                 options.RoutePrefix = string.Empty;
             });
-            app.UseCors();
+            app.UseCors(allowOrigins);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

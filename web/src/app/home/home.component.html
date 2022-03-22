@@ -9,6 +9,8 @@
       <th>Lastname</th>
       <th>Email</th>
       <th>Major</th>
+      <th>Average</th>
+      <th>Delete Student</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +19,9 @@
       <td>{{ student.lastName }}</td>
       <td>{{ student.email }}</td>
       <td>{{ student.major }}</td>
+      <td [ngClass]="{ 'green' : student.average > 80, 'orange': student.average <= 80 && student.average > 50, 'red' : student.average < 50}">
+      {{ student.average }}</td>
+      <td><button class="button" (click)="deleteStudent(student)">Delete</button></td>
     </tr>
   </tbody>
 </table>

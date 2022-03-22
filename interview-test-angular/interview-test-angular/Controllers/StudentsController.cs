@@ -39,5 +39,24 @@ namespace interview_test_angular.Controllers
 
             return reponse.Students;
         }
+
+        [HttpDelete]
+        [Route("/delete")]
+
+        public async Task<bool> Delete(Student student)
+        {
+            var response = await Mediator.Send(new DeleteStudentRequest() { Student = student });
+
+            return response.IsDeleteSuccess;
+        }
+
+        [HttpPost]
+        [Route("/add")]
+        public async Task<bool> Add(Student student)
+        {
+            var response = await Mediator.Send(new AddStudentRequest() { Student = student });
+
+            return response.IsAddSuccess;
+        }
     }
 }
